@@ -4,20 +4,39 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Die Klasse User_erp repräsentiert einen Benutzer in einem ERP-System (Enterprise Resource Planning).
+ * Sie enthält Informationen wie Benutzername, Passwort, E-Mail und zugewiesene Rollen.
+ * Die Klasse ist als JPA-Entity implementiert, um die Persistenz in einer relationalen Datenbank zu ermöglichen.
+ */
 @Entity
 @Table(name ="users")
 public class User_erp {
+     /**
+     * Eindeutige Identifikationsnummer des Benutzers. Wird automatisch von der Datenbank generiert.
+     */
       @Id
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private  Integer id;
+     /**
+     * Der Benutzername des Benutzers. Darf nicht null sein und hat eine maximale Länge von 255 Zeichen.
+     */
       @Column(name="username", length = 255, nullable = false)
       private String username;
+    /**
+     * Das Passwort des Benutzers. Darf nicht null sein und hat eine maximale Länge von 255 Zeichen.
+     */
       @Column(name="password", length = 255, nullable = false)
       private String  password ;
-    @Column(name="email", length = 255, nullable = false)
+    /**
+     * Die E-Mail-Adresse des Benutzers. Darf nicht null sein und hat eine maximale Länge von 255 Zeichen.
+     */
+      @Column(name="email", length = 255, nullable = false)
       private String  email;
-    @Column(name="enable")
+    /**
+     * Gibt an, ob der Benutzer aktiviert ist (true) oder deaktiviert ist (false).
+     */
+      @Column(name="enable")
       private boolean enable;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
@@ -95,4 +114,6 @@ public class User_erp {
                 ", roleList=" + roleList +
                 '}';
     }
+
+
 }
