@@ -1,6 +1,7 @@
 package com.example.ERP_SYSTEM.entities.Auftragsverwaltung;
 
 
+import com.example.ERP_SYSTEM.entities.supplier.Supplier;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -26,17 +27,29 @@ public class Order {
      private Double totalAmount;
      @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
      private List<orderitem> orderitemList = new ArrayList<>();
-
-    public Order(String orderNumber, Date orderDate, String status, String shippingAdress, Double totalAmount, List<orderitem> orderitemList) {
+    @ManyToOne
+    @JoinColumn(name = "supplier_id", referencedColumnName = "id")
+    private Supplier supplier;  // Der Lieferant, der diese Bestellung gemacht hat
+    public Order(String orderNumber, Date orderDate, String status,
+                 String shippingAdress, Double totalAmount, List<orderitem> orderitemList, Supplier supplier) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
         this.status = status;
         this.shippingAdress = shippingAdress;
         this.totalAmount = totalAmount;
         this.orderitemList = orderitemList;
+        this.supplier = supplier;
     }
 
     public Order() {
+    }
+
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 
     public Integer getId() {
