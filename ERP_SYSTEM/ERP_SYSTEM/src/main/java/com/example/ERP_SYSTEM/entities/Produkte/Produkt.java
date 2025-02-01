@@ -1,8 +1,8 @@
-package com.example.ERP_SYSTEM.Produkte;
+package com.example.ERP_SYSTEM.entities.Produkte;
 
 
 import jakarta.persistence.*;
-import com.example.ERP_SYSTEM.entities.*;
+
 @Entity
 @Table(name = "products")
 public class Produkt {
