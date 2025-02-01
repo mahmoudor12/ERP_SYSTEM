@@ -4,13 +4,14 @@ package com.example.ERP_SYSTEM.Services;
 import com.example.ERP_SYSTEM.entities.Projekt.Employee;
 import com.example.ERP_SYSTEM.Repo.EmployeeRepo;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class EmployeeService {
-
+    @Autowired
     private final EmployeeRepo employeeRepo;
 
     // Konstruktor
