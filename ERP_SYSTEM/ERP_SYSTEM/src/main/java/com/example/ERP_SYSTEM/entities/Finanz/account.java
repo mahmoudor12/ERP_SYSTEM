@@ -1,4 +1,4 @@
-package com.example.ERP_SYSTEM.entities.finanz;
+package com.example.ERP_SYSTEM.entities.Finanz;
 
 
 import jakarta.persistence.*;

@@ -1,9 +1,8 @@
-package com.example.ERP_SYSTEM.entities.finanz;
+package com.example.ERP_SYSTEM.entities.Finanz;
 
 
 import com.example.ERP_SYSTEM.entities.Rechnung.rechnung;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 
 @Entity
@@ -36,7 +35,7 @@ public class Payment {
     @JoinColumn(name = "account_id", nullable = false)
     private account account; // Verknüpfung zum Buchhaltungskonto
 
-    public Payment(rechnung invoice, Data paymentDate, double amount, String paymentMethod, String status, com.example.ERP_SYSTEM.entities.finanz.transaction transaction, com.example.ERP_SYSTEM.entities.finanz.account account) {
+    public Payment(rechnung invoice, Data paymentDate, double amount, String paymentMethod, String status, com.example.ERP_SYSTEM.entities.Finanz.transaction transaction, com.example.ERP_SYSTEM.entities.Finanz.account account) {
         this.invoice = invoice;
         this.paymentDate = paymentDate;
         this.amount = amount;

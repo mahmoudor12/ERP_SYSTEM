@@ -1,8 +1,7 @@
-package com.example.ERP_SYSTEM.entities.finanz;
+package com.example.ERP_SYSTEM.entities.Finanz;
 
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
