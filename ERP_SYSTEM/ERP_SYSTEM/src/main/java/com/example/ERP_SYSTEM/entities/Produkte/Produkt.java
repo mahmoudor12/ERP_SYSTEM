@@ -31,12 +31,12 @@ public class Produkt {
     private int stockQuantity;
     @ManyToOne
     @JoinColumn(name = "warehouse_id", nullable = false)
-    private Warehause warehouse ; // Verknüpfung zum Lagerhaus
+    private Warehouse warehouse ; // Verknüpfung zum Lagerhaus
 
     public Produkt() {
     }
 
-    public Produkt(String pruduct_name, String description, String description1, String description2, String description3, double price, String artnr, String imageUrl, int stockQuantity, Warehause warehouse) {
+    public Produkt(String pruduct_name, String description, String description1, String description2, String description3, double price, String artnr, String imageUrl, int stockQuantity, Warehouse warehouse) {
         Pruduct_name = pruduct_name;
         this.description = description;
         Description1 = description1;
@@ -129,11 +129,11 @@ public class Produkt {
         this.stockQuantity = stockQuantity;
     }
 
-    public Warehause getWarehouse() {
+    public Warehouse getWarehouse() {
         return warehouse;
     }
 
-    public void setWarehouse(Warehause warehouse) {
+    public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
     }
 

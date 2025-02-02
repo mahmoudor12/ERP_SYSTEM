@@ -2,6 +2,9 @@ package com.example.ERP_SYSTEM.entities.Users;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 @Table(name = "permission")
@@ -12,7 +15,7 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="pre_name", nullable = false,unique = true,length = 233)
+    @Column(name="pre_name", nullable = false,unique = true,length = 255)
     private String name;
     @Column(name="description", nullable = false, length = 1024 , columnDefinition = "text")
     private String description;
@@ -25,6 +28,8 @@ public class Permission {
         this.name = name;
         this.description = description;
     }
+
+
 
     public Integer getId() {
         return id;

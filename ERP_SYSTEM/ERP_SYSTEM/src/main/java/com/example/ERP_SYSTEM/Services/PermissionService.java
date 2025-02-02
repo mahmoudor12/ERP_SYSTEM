@@ -4,11 +4,11 @@ package com.example.ERP_SYSTEM.Services;
 
 
 
-import com.example.ERP_SYSTEM.entities.*;
+
+
 import com.example.ERP_SYSTEM.Repo.PermissionRepo;
 import com.example.ERP_SYSTEM.entities.Users.Permission;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,9 +43,7 @@ public class PermissionService {
         return permissionRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Permission with ID" + id +"schon vorhandeln"));
     }
 
-    public Permission getPermissionByName(String name) {
-        return permissionRepository.findByName(name);
-    }
+
 
     public void deletePermission(Integer id) {
         permissionRepository.deleteById(id);

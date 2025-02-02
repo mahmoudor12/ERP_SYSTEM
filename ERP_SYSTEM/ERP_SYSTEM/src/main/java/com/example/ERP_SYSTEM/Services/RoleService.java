@@ -3,6 +3,7 @@ package com.example.ERP_SYSTEM.Services;
 
 import com.example.ERP_SYSTEM.Repo.RoleRepo;
 import com.example.ERP_SYSTEM.entities.Users.Role;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +51,6 @@ public class RoleService {
 
     // Rolle nach Name suchen
     public Role getRoleByName(String name) {
-        return roleRepo.findbyName(name); // Eine benutzerdefinierte Methode im Repository
+        return roleRepo.findByName(name).orElseThrow(()-> new EntityNotFoundException("nicht gefunden")); // Eine benutzerdefinierte Methode im Repository
     }
 }

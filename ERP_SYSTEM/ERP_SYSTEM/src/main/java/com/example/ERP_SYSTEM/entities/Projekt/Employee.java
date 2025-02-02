@@ -27,8 +27,9 @@ public class Employee {
     @JoinColumn(name = "employee_id")
     private List<Task> tasks;
 
-    @OneToMany(mappedBy = "employees", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
     private List<PurchaseOrder> purchaseOrders;
+
 
     public Employee(Integer id, String firstname, String lastname, String email, String phoneNumber, String address, List<Task> tasks, List<PurchaseOrder> purchaseOrders) {
         this.id = id;

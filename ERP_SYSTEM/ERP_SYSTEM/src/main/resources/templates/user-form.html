@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Benutzer erstellen/bearbeiten</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Benutzerformular</h1>
+<form action="/users/save" method="post">
+    <input type="hidden" name="id" th:value="${user.id}">
+    <label>Benutzername:</label>
+    <input type="text" name="username" th:value="${user.username}" required>
+
+    <label>Passwort:</label>
+    <input type="password" name="password" required>
+
+    <button type="submit" class="button">Speichern</button>
+</form>
+<a href="/users" class="button">Zurück zur Liste</a>
+</body>
+</html>

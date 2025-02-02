@@ -1,6 +1,7 @@
 package com.example.ERP_SYSTEM.entities.Users;
 
 import jakarta.persistence.*;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +41,14 @@ public class User_erp {
       private boolean enable;
 
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(name = "role_users" ,joinColumns =@JoinColumn(name="user_id", referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "role_id",columnDefinition = "id"))
+    @JoinTable(name = "role_users" ,joinColumns =@JoinColumn(name="user_id", referencedColumnName = "id"),inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName ="id"))
     private List<Role> roleList = new ArrayList<>();
+
 
     public User_erp() {
     }
+
+
 
     public Integer getId() {
         return id;
@@ -75,9 +79,7 @@ public class User_erp {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
 
     public String getEmail() {
         return email;
@@ -102,7 +104,10 @@ public class User_erp {
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
     }
-
+    public void setPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
+    }
     @Override
     public String toString() {
         return "User_erp{" +

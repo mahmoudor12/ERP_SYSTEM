@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepo  extends JpaRepository<transaction,Integer> {
-        transaction findbyName(String name);
+
 }

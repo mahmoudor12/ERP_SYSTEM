@@ -3,7 +3,10 @@ package com.example.ERP_SYSTEM.entities.Finanz;
 
 import com.example.ERP_SYSTEM.entities.Rechnung.rechnung;
 import jakarta.persistence.*;
-import lombok.Data;
+
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name ="payments")
@@ -13,11 +16,14 @@ public class Payment {
       @GeneratedValue(strategy = GenerationType.IDENTITY)
       private Integer id;
 
-      @ManyToMany
-      @JoinColumn(name = "invoice_id" ,columnDefinition = "id")
-      private rechnung invoice;
-      @Column(name="payment_date", nullable = false)
-      private Data paymentDate;
+    @ManyToMany
+    @JoinTable(name = "order_invoice",
+            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "invoice_id", referencedColumnName = "id"))
+    private List<rechnung> invoices;
+
+    @Column(name="payment_date", nullable = false)
+      private LocalDate paymentDate;
 
       @Column(name = "amount",nullable = false)
       private double amount ;
@@ -28,15 +34,15 @@ public class Payment {
       private  String status;
 
     @ManyToOne
-    @JoinColumn(name = "transaction_id", nullable = true)
+    @JoinColumn(name = "transaction_id",referencedColumnName = "id")
     private transaction transaction; // Verknüpfung zur Transaktion
 
     @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private account account; // Verknüpfung zum Buchhaltungskonto
 
-    public Payment(rechnung invoice, Data paymentDate, double amount, String paymentMethod, String status, com.example.ERP_SYSTEM.entities.Finanz.transaction transaction, com.example.ERP_SYSTEM.entities.Finanz.account account) {
-        this.invoice = invoice;
+    public Payment(List<rechnung> invoice, LocalDate paymentDate, double amount, String paymentMethod, String status, com.example.ERP_SYSTEM.entities.Finanz.transaction transaction, com.example.ERP_SYSTEM.entities.Finanz.account account) {
+        this.invoices = invoice;
         this.paymentDate = paymentDate;
         this.amount = amount;
         this.paymentMethod = paymentMethod;
@@ -56,19 +62,19 @@ public class Payment {
         this.id = id;
     }
 
-    public rechnung getInvoice() {
-        return invoice;
+    public List<rechnung> getInvoices() {
+        return invoices;
     }
 
-    public void setInvoice(rechnung invoice) {
-        this.invoice = invoice;
+    public void setInvoices(List<rechnung> invoices) {
+        this.invoices = invoices;
     }
 
-    public Data getPaymentDate() {
+    public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
-    public void setPaymentDate(Data paymentDate) {
+    public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate;
     }
 
@@ -116,7 +122,7 @@ public class Payment {
     public String toString() {
         return "Payment{" +
                 "id=" + id +
-                ", invoice=" + invoice +
+                ", invoice=" + invoices +
                 ", paymentDate=" + paymentDate +
                 ", amount=" + amount +
                 ", paymentMethod='" + paymentMethod + '\'' +

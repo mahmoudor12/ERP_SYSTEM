@@ -18,7 +18,7 @@ public class orderitem {
    @Column(name="Totalpreis")
    private  Double Totalprice;
    @ManyToOne
-   @JoinColumn(name ="order_id", columnDefinition ="id")
+   @JoinColumn(name ="order_id", referencedColumnName ="id")
    private  Order order;
 
     public orderitem() {

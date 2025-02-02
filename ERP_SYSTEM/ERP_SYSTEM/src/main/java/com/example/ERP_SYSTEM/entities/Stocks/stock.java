@@ -18,11 +18,11 @@ public class stock {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", columnDefinition = "id")
+    @JoinColumn(name = "project_id", referencedColumnName = "id")
     private Project project;
 
     @ManyToOne
-    @JoinColumn(name="employee_id", columnDefinition = "id")
+    @JoinColumn(name="employee_id", referencedColumnName = "id")
     private Employee employee;
 
     @Column(name = "taskname" , nullable = false)

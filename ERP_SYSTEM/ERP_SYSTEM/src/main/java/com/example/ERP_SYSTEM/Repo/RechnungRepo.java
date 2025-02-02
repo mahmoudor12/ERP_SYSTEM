@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RechnungRepo extends JpaRepository<rechnung,Integer> {
-     rechnung findByname(String name);
+
 }
 
 

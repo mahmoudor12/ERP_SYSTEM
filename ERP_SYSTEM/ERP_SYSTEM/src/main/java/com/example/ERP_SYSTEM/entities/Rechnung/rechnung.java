@@ -13,7 +13,7 @@ public class rechnung {
     @GeneratedValue
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "order_id" ,columnDefinition = "id")
+    @JoinColumn(name = "order_id" ,referencedColumnName = "id")
     private Order order;
     @Column(name = "invoice_Date")
     private LocalDate invoiceDate;

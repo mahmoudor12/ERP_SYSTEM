@@ -51,7 +51,7 @@ public class PaymentService {
         existingPayment.setPaymentDate(updatedPayment.getPaymentDate());
         existingPayment.setPaymentMethod(updatedPayment.getPaymentMethod());
         existingPayment.setAccount(updatedPayment.getAccount());
-        existingPayment.setInvoice(updatedPayment.getInvoice());
+        existingPayment.setInvoices(updatedPayment.getInvoices());
         existingPayment.setTransaction(updatedPayment.getTransaction());
 
         paymentRepo.save(existingPayment);

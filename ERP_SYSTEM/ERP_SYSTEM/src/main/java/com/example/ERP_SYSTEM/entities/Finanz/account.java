@@ -12,11 +12,11 @@ public class account {
 
     @Column(name = "account_number", nullable = false, length = 50)
     private String accountNumber;
-    @Column(name = "account_number", nullable = false, length = 255)
+    @Column(name = "account_accountType", nullable = false, length = 255)
     private  String accountType;
     @Column(name = "account_balance", nullable = false, length = 250)
     private Double balance;
-    @Column(name = "account_number", nullable = false, length = 250)
+    @Column(name = "currency", nullable = false, length = 250)
     private String currency;
     @Column(name = "account_Holder", nullable = false, length = 250)
     private  String accountHolder;

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentRepo extends JpaRepository<Payment,Integer> {
-     Payment findbyName(String name);
+
 }
