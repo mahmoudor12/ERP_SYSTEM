@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Benutzer erstellen/bearbeiten</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Bestellung erstellen/bearbeiten</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>Benutzerformular</h1>
-<form action="/users/save" method="post">
-    <input type="hidden" name="id" th:value="${user.id}">
-    <label>Benutzername:</label>
-    <input type="text" name="username" th:value="${user.username}" required>
+<h1>Bestellformular</h1>
+<form action="/orders/save" method="post">
+    <input type="hidden" name="id" th:value="${order.id}">
 
-    <label>Passwort:</label>
-    <input type="password" name="password" required>
+    <label>Bestellnummer:</label>
+    <input type="text" name="orderNumber" th:value="${order.orderNumber}" required>
+
+    <label>Bestelldatum:</label>
+    <input type="date" name="orderDate" th:value="${order.orderDate}" required>
+
+    <label>Status:</label>
+    <select name="status">
+        <option value="offen" th:selected="${order.status == 'offen'}">Offen</option>
+        <option value="bearbeitet" th:selected="${order.status == 'bearbeitet'}">Bearbeitet</option>
+        <option value="abgeschlossen" th:selected="${order.status == 'abgeschlossen'}">Abgeschlossen</option>
+    </select>
+
+    <label>Lieferadresse:</label>
+    <input type="text" name="shippingAdress" th:value="${order.shippingAdress}" required>
+
+    <label>Gesamtbetrag (€):</label>
+    <input type="number" name="totalAmount" step="0.01" th:value="${order.totalAmount}" required>
 
     <button type="submit" class="button">Speichern</button>
 </form>
-<a href="/users" class="button">Zurück zur Liste</a>
+<a href="/orders" class="button">Zurück zur Liste</a>
 </body>
 </html>

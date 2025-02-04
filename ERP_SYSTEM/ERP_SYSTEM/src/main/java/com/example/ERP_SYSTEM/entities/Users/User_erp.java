@@ -104,10 +104,12 @@ public class User_erp {
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
     }
+
+    /*
     public void setPassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.password = encoder.encode(password);
-    }
+    }*/
     @Override
     public String toString() {
         return "User_erp{" +
@@ -120,5 +122,7 @@ public class User_erp {
                 '}';
     }
 
-
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

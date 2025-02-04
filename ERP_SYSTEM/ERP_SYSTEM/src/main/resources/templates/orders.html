@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Bestellübersicht</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #28a745;
+        color: white;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 10px;
+        background: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        background: #218838;
+    }
+  </style>
+</head>
+<body>
+<h1>Bestellungen</h1>
+<a href="/orders/new" class="button">Neue Bestellung</a>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Bestellnummer</th>
+    <th>Datum</th>
+    <th>Status</th>
+    <th>Lieferadresse</th>
+    <th>Gesamtbetrag</th>
+    <th>Aktionen</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="order : ${orders}">
+    <td th:text="${order.id}"></td>
+    <td th:text="${order.orderNumber}"></td>
+    <td th:text="${order.orderDate}"></td>
+    <td th:text="${order.status}"></td>
+    <td th:text="${order.shippingAdress}"></td>
+    <td th:text="${order.totalAmount} + ' €'"></td>
+    <td>
+      <a th:href="@{/orders/edit/{id}(id=${order.id})}" class="button">Bearbeiten</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Bestellpositionsdetails</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+    }
+
+    h1 {
+        color: #333;
+    }
+
+    .order-info {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: left;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 10px;
+        background: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        background: #218838;
+    }
+  </style>
+</head>
+<body>
+<h1>Details der Bestellposition</h1>
+<div class="order-info">
+  <p><strong>ID:</strong> <span th:text="${orderItem.id}"></span></p>
+  <p><strong>Produktname:</strong> <span th:text="${orderItem.productName}"></span></p>
+  <p><strong>Menge:</strong> <span th:text="${orderItem.quantity}"></span></p>
+  <p><strong>Preis (€):</strong> <span th:text="${orderItem.price}"></span></p>
+  <p><strong>Gesamtpreis (€):</strong> <span th:text="${orderItem.totalprice}"></span></p>
+  <p><strong>Bestellung ID:</strong> <span th:text="${orderItem.order.id}"></span></p>
+</div>
+<a href="/order-items" class="button">Zurück zur Liste</a>
+</body>
+</html>

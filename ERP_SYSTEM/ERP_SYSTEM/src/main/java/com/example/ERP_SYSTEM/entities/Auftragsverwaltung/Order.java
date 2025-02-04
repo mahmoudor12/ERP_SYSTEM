@@ -4,6 +4,7 @@ package com.example.ERP_SYSTEM.entities.Auftragsverwaltung;
 import com.example.ERP_SYSTEM.entities.supplier.Supplier;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,22 +17,22 @@ public class Order {
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Integer id;
 
-     @Column(name = "order_number", nullable = false)
+     @Column(name = "order_number")
      private String orderNumber; // Eindeutige Bestellnummer
-    @Column(name = "order_Date", nullable = false)
-     private Date  orderDate;
-    @Column(name = "order_status", nullable = false)
+    @Column(name = "order_Date")
+     private LocalDate orderDate;
+    @Column(name = "order_status")
      private String status;
-    @Column(name = "Order_shippingAdress", nullable = false)
+    @Column(name = "Order_shippingAdress")
      private String shippingAdress;
-    @Column(name = "Order_totalAmount", nullable = false)
+    @Column(name = "Order_totalAmount")
      private Double totalAmount;
      @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
      private List<orderitem> orderitemList = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "supplier_id", referencedColumnName = "id")
     private Supplier supplier;  // Der Lieferant, der diese Bestellung gemacht hat
-    public Order(String orderNumber, Date orderDate, String status,
+    public Order(String orderNumber, LocalDate orderDate, String status,
                  String shippingAdress, Double totalAmount, List<orderitem> orderitemList, Supplier supplier) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
@@ -69,11 +70,11 @@ public class Order {
         this.orderNumber = orderNumber;
     }
 
-    public Date getOrderDate() {
+    public LocalDate getOrderDate() {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }
 
@@ -108,7 +109,9 @@ public class Order {
     public void setOrderitemList(List<orderitem> orderitemList) {
         this.orderitemList = orderitemList;
     }
-
+    public boolean check(Order order){
+        return order != null;
+    }
     @Override
     public String toString() {
         return "Order{" +

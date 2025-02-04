@@ -79,7 +79,9 @@ public class orderitem {
     public void setOrder(Order order) {
         this.order = order;
     }
-
+    public boolean check(orderitem order){
+        return order != null;
+    }
     @Override
     public String toString() {
         return "orderitem{" +

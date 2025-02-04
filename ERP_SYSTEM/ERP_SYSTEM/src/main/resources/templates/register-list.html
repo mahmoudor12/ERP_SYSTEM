@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+    <title> Liste den Kunden</title>
+
+    <style>
+        /* Allgemeine Stile */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7fb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background-color: #28a745;
+            color: white;
+            font-size: 2rem;
+            border-radius: 8px;
+            margin: 20px 0;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        table {
+            width: 80%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: white;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover td {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+                padding: 15px;
+                width: 90%;
+            }
+
+            table {
+                width: 90%;
+            }
+
+            th, td {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+
+            a {
+                font-size: 0.9rem;
+                padding: 10px 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Liste den Benutzern</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>PhoneNumber</th>
+    </tr>
+    <tr th:each="register : ${registers}">
+        <td th:text="${register.id}"></td>
+        <td th:text="${register.name}"></td>
+        <td th:text="${register.password}"></td>
+        <td th:text="${register.email}"></td>
+        <td th:text="${register.address}"></td>
+        <td th:text="${register.phoneNumber}"></td>
+    </tr>
+</table>
+
+<a th:href="@{/register/show}">Neuer Kunde erstellen</a>
+
+</body>
+</html>
