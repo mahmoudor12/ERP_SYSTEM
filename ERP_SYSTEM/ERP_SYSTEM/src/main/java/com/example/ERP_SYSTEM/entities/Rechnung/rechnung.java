@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class rechnung {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
     @JoinColumn(name = "order_id" ,referencedColumnName = "id")

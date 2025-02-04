@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Aufgabe erstellen/bearbeiten</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2 class="text-center">Aufgabe erstellen/bearbeiten</h2>
+
+  <form action="#" th:action="@{/task/save}" th:object="${task}" method="post">
+    <input type="hidden" th:field="*{id}">
+
+    <div class="mb-3">
+      <label class="form-label">Aufgabenname</label>
+      <input type="text" class="form-control" th:field="*{taskName}" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Beschreibung</label>
+      <textarea class="form-control" th:field="*{description}"></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fälligkeitsdatum</label>
+      <input type="date" class="form-control" th:field="*{dueDate}">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Status</label>
+      <select class="form-control" th:field="*{status}">
+        <option value="Open">Open</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Projekt</label>
+      <select class="form-control" th:field="*{project.id}">
+        <option th:each="proj : ${projects}" th:value="${proj.id}" th:text="${proj.projectName}"></option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Mitarbeiter</label>
+      <select class="form-control" th:field="*{employee.id}">
+        <option th:each="emp : ${employees}" th:value="${emp.id}" th:text="${emp.firstname} + ' ' + ${emp.lastname}"></option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Speichern</button>
+  </form>
+
+  <a th:href="@{/task/list}" class="btn btn-secondary mt-3">Zurück zur Übersicht</a>
+</div>
+
+</body>
+</html>

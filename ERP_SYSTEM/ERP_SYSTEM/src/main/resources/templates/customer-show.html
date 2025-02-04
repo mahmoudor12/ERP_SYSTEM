@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Unternehmensübersicht</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
+  <style>
+    /* Allgemeine Styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 1000px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    h2 {
+        text-align: center;
+        color: #343a40;
+        margin-bottom: 20px;
+    }
+
+    .table-responsive {
+        margin-top: 20px;
+    }
+
+    .table thead {
+        background-color: #343a40;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .btn {
+        margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Unternehmensübersicht</h2>
+
+  <div th:if="${companies.empty}">
+    <p class="text-center text-muted">Keine Unternehmen gefunden.</p>
+  </div>
+
+  <div th:unless="${companies.empty}" class="table-responsive">
+    <table class="table table-striped">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Unternehmensname</th>
+        <th>E-Mail</th>
+        <th>Telefon</th>
+        <th>Adresse</th>
+        <th>Branche</th>
+        <th>Status</th>
+        <th>Kundentyp</th>
+        <th>Region</th>
+        <th>Erstellt am</th>
+        <th>Aktualisiert am</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="company : ${companies}">
+        <td th:text="${company.id}"></td>
+        <td th:text="${company.companyName}"></td>
+        <td th:text="${company.email}"></td>
+        <td th:text="${company.phoneNumber}"></td>
+        <td th:text="${company.address}"></td>
+        <td th:text="${company.industryType}"></td>
+        <td th:text="${company.status}"></td>
+        <td th:text="${company.customerType}"></td>
+        <td th:text="${company.region}"></td>
+        <td th:text="${#temporals.format(company.createdAt, 'dd.MM.yyyy HH:mm')}"></td>
+        <td th:text="${#temporals.format(company.updatedAt, 'dd.MM.yyyy HH:mm')}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a th:href="@{/company/new}" class="btn btn-success w-100">Neues Unternehmen erstellen</a>
+</div>
+
+</body>
+</html>
